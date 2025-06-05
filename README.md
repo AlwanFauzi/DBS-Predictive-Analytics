@@ -69,28 +69,31 @@ Beberapa penelitian menunjukkan bahwa kebiasaan belajar yang baik, dukungan kelu
 
 ## Data Preparation
 
-1. **Mengisi Nilai Kosong**  
-   - Kolom `parental_education_level` diisi dengan modus (nilai terbanyak).
+1. **Menghapus Kolom Tidak Relevan**  
+   - Kolom `student_id` dihapus karena tidak memiliki nilai prediktif.
 
-2. **Encoding Fitur Kategorikal**  
-   - Menggunakan `OrdinalEncoder` pada:
-     - `diet_quality` → `dq_e`
-     - `internet_quality` → `iq_e`
-     - `parental_education_level` → `pel_e`
+2. **Encoding Fitur Kategorikal**
+   - Kolom ordinal di-*mapping* secara manual ke nilai numerik berdasarkan urutan:
+     - `diet_quality`: {'Poor': 0, 'Fair': 1, 'Good': 2}
+     - `internet_quality`: {'Poor': 0, 'Average': 1, 'Good': 2}
+     - `parental_education_level`: {'High School': 0, 'Bachelor': 1, 'Master': 2}
+   - Kolom nominal (`gender`, `part_time_job`, `extracurricular_participation`) diencoding menggunakan **One-Hot Encoding** dengan `get_dummies()`.
 
 3. **Menghapus Kolom Asli Setelah Encoding**  
-   - Menghapus `diet_quality`, `internet_quality`, `parental_education_level`.
+   - Kolom-kolom kategorikal asli dihapus setelah encoding dilakukan.
 
-4. **Menghapus Kolom Tidak Relevan**  
-   - Menghapus `student_id`.
+4. **Gabungkan Semua Fitur**  
+   - Hasil encoding digabungkan dengan dataset utama menggunakan `concat`.
 
-5. **Pemisahan Fitur dan Target**  
-   - **Fitur (`X`)**: seluruh kolom kecuali `exam_score`  
-   - **Target (`y`)**: `exam_score`
+5. **Pemisahan Fitur dan Target**
+   - Fitur (`X`) = semua kolom kecuali `exam_score`.
+   - Target (`y`) = kolom `exam_score`.
 
-6. **Split Data**  
-   - 80% data latih, 20% data uji  
-   - `train_test_split(random_state=42)`
+6. **Feature Scaling**
+   - Seluruh fitur dinormalisasi menggunakan `StandardScaler`.
+
+7. **Split Data**
+   - Data dibagi menjadi 80% data latih dan 20% data uji dengan `train_test_split(random_state=42)`.
 
 ---
 
