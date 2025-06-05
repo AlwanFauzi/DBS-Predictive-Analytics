@@ -121,24 +121,43 @@ Beberapa penelitian menunjukkan bahwa kebiasaan belajar yang baik, dukungan kelu
 
 ## Evaluation
 
+Pada tahap ini, dilakukan evaluasi terhadap performa model regresi menggunakan beberapa metrik evaluasi yang umum digunakan dalam kasus prediksi numerik (regresi), yaitu:
+
 ### Metrik Evaluasi
 
-- **RMSE (Root Mean Squared Error)**  
-- **MAE (Mean Absolute Error)**  
-- **R² Score (Koefisien Determinasi)**  
-- **MAPE (Mean Absolute Percentage Error)**  
+1. **RMSE (Root Mean Squared Error)**  
+   RMSE mengukur seberapa besar rata-rata galat (error) kuadrat antara nilai prediksi dan nilai aktual. Nilai RMSE yang lebih kecil menunjukkan model yang lebih akurat.
+
+2. **MAE (Mean Absolute Error)**  
+   MAE mengukur rata-rata selisih absolut antara nilai aktual dan nilai prediksi. MAE lebih tahan terhadap outlier dibanding RMSE.
+
+3. **R² Score (Koefisien Determinasi)**  
+   R² menunjukkan seberapa besar proporsi variasi dari nilai target yang dapat dijelaskan oleh fitur-fitur input. Nilai R² berkisar antara 0 hingga 1. Semakin mendekati 1, semakin baik model menjelaskan data.
+
+4. **MAPE (Mean Absolute Percentage Error)**  
+   MAPE mengukur rata-rata persentase kesalahan antara prediksi dan nilai aktual. Nilai MAPE yang rendah menunjukkan akurasi model yang tinggi dalam konteks persentase.
 
 ### Hasil Evaluasi
 
+Berikut adalah perbandingan hasil evaluasi dari empat model regresi yang digunakan:
+
 | Model             | RMSE | MAE  | R² Score | MAPE (%) |
-| ----------------- | ---- | ---- | -------- | -------- |
+|------------------|------|------|----------|----------|
 | Linear Regression | 5.09 | 4.14 | 0.90     | 6.83     |
 | Random Forest     | 6.24 | 4.96 | 0.85     | 8.30     |
 | Gradient Boosting | 5.57 | 4.66 | 0.88     | 7.58     |
 | XGBoost           | 6.36 | 5.14 | 0.84     | 8.35     |
 
-**Kesimpulan Evaluasi:**  
-Model **Linear Regression** memberikan performa terbaik dengan nilai error terendah dan R² Score tertinggi.
+### Interpretasi Hasil
+
+Berdasarkan nilai-nilai evaluasi di atas, dapat disimpulkan bahwa:
+
+- **Model Linear Regression** menunjukkan performa terbaik dibandingkan model lainnya, ditinjau dari seluruh metrik utama:
+  - **RMSE** dan **MAE** paling rendah, menandakan prediksi yang relatif lebih dekat terhadap nilai aktual.
+  - **R² Score tertinggi (0.90)** menunjukkan bahwa model ini mampu menjelaskan 90% variasi dalam nilai ujian berdasarkan fitur-fitur kebiasaan siswa.
+  - **MAPE terendah (6.83%)** menunjukkan kesalahan rata-rata yang kecil dalam bentuk persentase.
+
+Model ini paling sesuai digunakan dalam konteks prediksi nilai ujian siswa, karena memberikan akurasi terbaik dan generalisasi yang baik. Hal ini sejalan dengan tujuan proyek untuk mendeteksi potensi performa akademik siswa berdasarkan kebiasaan mereka.
 
 ---
 
